@@ -21,10 +21,6 @@ public class AppointmentService {
 	@Transactional
 	public Appointment bookAppointment(Appointment appointment) throws Exception {
 
-//		if (!appointment.getSlot().isAvailable()) {
-//			throw new Exception("The selected slot is not available");
-//		}
-//
 		appointment.setStatus(EStatusAppointment.PENDING);
 		return appointmentRepository.save(appointment);
 	}
