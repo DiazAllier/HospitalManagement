@@ -1,0 +1,65 @@
+<section>
+  <div class="container py-5 h-100 w-50">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <form #patientsForm="ngForm" class="needs-validation">
+        <div class="py-5 text-center">
+          <h2>Patients</h2>
+          <p class="lead">{{title}}</p>
+        </div>
+        <a class="btn btn-primary mb-2" [routerLink]="['/patients']">List</a>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="firstName">Name</label>
+            <input type="text" name="firstName" [(ngModel)]="patient.person.name" class="form-control" id="firstName"
+              [ngClass]="(firstName && firstName.invalid && patientsForm.submitted) ? 'is-invalid' : ''"
+              #firstName="ngModel" required>
+          </div>
+          <div *ngIf="firstName && firstName.invalid && patientsForm.submitted" class="invalid-feedback">
+            Please enter a valid name.
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastNameP">Last name</label>
+            <input type="text" name="apPaterno" [(ngModel)]="patient.person.lastName" class="form-control" id="lastName"
+              [ngClass]="(lastName && lastName.invalid && patientsForm.submitted) ? 'is-invalid' : ''"
+              #lastName="ngModel" required>
+          </div>
+          <div *ngIf="lastName && lastName.invalid && patientsForm.submitted" class="invalid-feedback">
+            Please enter a valid last name.
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="symptoms">Symptoms</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" name="symptoms"
+              [(ngModel)]="patient.symptoms" class="form-control" id="symptoms"
+              [ngClass]="(symptoms && symptoms.invalid && patientsForm.submitted) ? 'is-invalid' : ''"
+              #symptoms="ngModel" required></textarea>
+          </div>
+          <div *ngIf="symptoms && symptoms.invalid && patientsForm.submitted" class="invalid-feedback">
+            Please enter a valid symptoms.
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="doctor">Doctor</label>
+              <select [(ngModel)]="patient.doctor" [disabled]="hasDoctor" name="doctor" class="form-select" id="doctor">
+                <option *ngIf="hasDoctor" [value]="patient.doctor">{{doctor.person.name}} {{doctor.person.lastName}}, ({{doctor.license}})</option>
+                <option *ngFor="let data of doctor" [ngValue]="data">
+                  {{data.person.name}} {{data.person.lastName}}, ({{data.license}})
+                </option>
+              </select>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div class="text-center">
+          <button class="btn btn-primary btn-lg btn-block" [disabled]="!patientsForm.form.valid"
+            (click)="savePatients()" type="submit">{{title}}</button>
+        </div>
+      </form>
+
+
+
+    </div>
+  </div>
+  <!-- </div> -->
+</section>
+
+<footer class="my-5">
+  <app-footer></app-footer>
+</footer>

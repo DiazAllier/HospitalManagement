@@ -1,0 +1,112 @@
+<div class="row g-4 my-5">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button text-bg-dark collapsed" type="button">
+                    ADMINISTRACION
+                </button>
+            </h2>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button text-bg-secondary collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    Personas
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse "
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                    <div class="card text-bg-secondary mb-3">
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/personas']"  class="card-title d-flex justify-content-between text-decoration-none">list de personas<i class="bi bi-caret-right"></i></a>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/personas/form']"  class="card-title d-flex justify-content-between text-decoration-none">Crear personas<i class="bi bi-caret-right"></i></a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseTwo">
+                    Pacientes
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                    <div class="card text-bg-secondary mb-3">
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/pacientes']"  class="card-title d-flex justify-content-between text-decoration-none">list de pacientes<i class="bi bi-caret-right"></i></a>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/pacientes/form']"  class="card-title d-flex justify-content-between text-decoration-none">Crear pacientes<i class="bi bi-caret-right"></i></a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseThree">
+                    Familiares
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                    <div class="card text-bg-secondary mb-3">
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/familia']"  class="card-title d-flex justify-content-between text-decoration-none">list de Familiares<i class="bi bi-caret-right"></i></a>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/familia/form']"  class="card-title d-flex justify-content-between text-decoration-none">Crear Familiares<i class="bi bi-caret-right"></i></a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed text-bg-secondary" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseForth" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseForth">
+                    Medicos
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseForth" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingForth">
+                <div class="accordion-body">
+                    <div class="card text-bg-secondary mb-3">
+                        <div class="list-group">
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a  [routerLink]="['/medico/form']"  class="card-title d-flex justify-content-between text-decoration-none">Crear Medico<i class="bi bi-caret-right"></i></a>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a [routerLink]="['/medico']"  class="card-title d-flex justify-content-between text-decoration-none">list de Medicos<i class="bi bi-caret-right"></i></a>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action"> 
+                                <a  [routerLink]="['/medico/horarios']"  class="card-title d-flex justify-content-between text-decoration-none">Horarios Medico<i class="bi bi-caret-right"></i></a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 

@@ -1,0 +1,118 @@
+<form #forms="ngForm" (ngSubmit)="save($event)" class="needs-validation">
+    <div class="py-5 text-center">
+        <h2>Schedule Appointment</h2>
+        <hr>
+        <p class="text-muted">Please fill out this form to be able to coordinate an appointment with the indicated specialist.</p>
+    </div>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingZero">
+                <button class="accordion-button collapsed" type="button" (opened)="setStep(0)" data-bs-toggle="collapse" data-bs-target="#flush-collapseZero" aria-expanded="false" [disabled]="step >= 1" aria-controls="flush-collapseZero">
+                    Personal information
+                    <mat-icon>local_hospital</mat-icon>
+                </button>
+            </h2>
+            <div id="flush-collapseZero" class="accordion-collapse collapse" aria-labelledby="flush-headingZero" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <label for="email">Reason for Visit or Diagnosis</label>
+                    <textarea rows="1" [(ngModel)]="schedules.reason" name="reason" type="text" class="form-control" id="reason" placeholder="example: fever" #reason="ngModel" required></textarea>
+                    <label class="form-label" for="email">Email</label>
+                    <input [(ngModel)]="schedules.emailPatient" name="email" type="text" class="form-control" id="email" placeholder="mail@example.com" email [ngClass]="(email && email.invalid && forms.submitted) ? 'is-invalid' : ''" #email="ngModel" required>
+                    <div *ngIf="email && email.invalid && forms.submitted" class="invalid-feedback">
+                        Please enter a valid email.
+                    </div>
+                </div>
+                <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" [disabled]="reason.invalid" (click)="nextStep()" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">Next</button>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" (opened)="step === 1" hideToggle [disabled]="step <= 0 || step >= 2">
+                    Select specialist
+                    <mat-icon>local_hospital</mat-icon>
+                </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body"> <label for="specialist" class="form-label">Specialization</label>
+                    <select (ngModelChange)="loadData($event)" [(ngModel)]="specialists" name="specialists" class="form-select" id="doctor">
+                        <option *ngFor="let data of specialistList" [value]="data.id">
+                            {{data.name}}
+                        </option>
+                    </select>
+                </div>
+                <button class="btn btn-primary m-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseZero" aria-expanded="false" aria-controls="flush-collapseZero" (click)="prevStep()">Back</button>
+                <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseThree" (click)="nextStep()">Next</button>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" (opened)="step === 2" hideToggle [disabled]="step <= 1 || step >= 2">
+                    Select doctor
+                    <mat-icon>recent_actors</mat-icon>
+                </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <label for="doctor" class="form-label">Doctor</label>
+                    <select [(ngModel)]="doctor" name="doctor" class="form-select" id="doctor">
+                        <option *ngFor="let data of doctorList" [ngValue]="data">
+                            {{data.person.name}} {{data.person.lastName}}, License: {{data.license}}
+                        </option>
+                    </select>
+                </div>
+                <button class="btn btn-primary m-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" (click)="prevStep()">Back</button>
+                <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" (click)="nextStep()">Next</button>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" (opened)="step === 3" hideToggle [disabled]="step <= 3 || step >= 4">
+                    Choose date
+                    <mat-icon>av_timer</mat-icon>
+                </button>
+            </h2>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Choose a date</mat-label>
+                        <input matInput [matDatepickerFilter]="myFilter" [(ngModel)]="date" [min]="minDate" name="date" [matDatepicker]="picker">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <button class="btn btn-primary m-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" (click)="prevStep()">Back</button>
+                <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour" (click)="nextStep()">Next</button>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour" (opened)="step === 4" hideToggle [disabled]="step <= 4 || step >= 5">
+                    Select hour
+                    <mat-icon>av_timer</mat-icon>
+                </button>
+            </h2>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                    <label for="hour" class="form-label">Select hour</label>
+                    <select [(ngModel)]="hour" name="hour" class="form-select" id="hour">
+                        <option *ngFor="let data of hourList" [ngValue]="data.hour">
+                            {{data.hour}}
+                        </option>
+                    </select>
+                </div>
+                <button class="btn btn-primary my-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" (click)="prevStep()">Back</button>
+            </div>
+
+            <div *ngIf="errors" class="alert alert-danger">
+                {{errors}}
+            </div>
+        </div>
+    </div>
+
+    <hr class="mb-4">
+    <div class="text-center pb-5">
+        <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="forms.invalid" (click)="schedule()">Schedule</button>
+    </div>
+    <!-- <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="form.invalid"(click)="guardarPersona()" >Agregar persona</button> -->
+</form>

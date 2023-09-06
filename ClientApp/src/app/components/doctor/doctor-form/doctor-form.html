@@ -1,0 +1,56 @@
+
+
+<section class="py-5">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <form #newUserForm="ngForm" >
+          <div class="accordion-item bg-light">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed bg-dark text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+               Doctor form
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" disabled [(ngModel)]="doctor.person.name" name="name" class="form-control" id="name">
+                  </div>
+
+                 
+                  <div class="col-md-6">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <input type="text" disabled class="form-control" id="lastName" [(ngModel)]="doctor.person.lastName"
+                      name="lastName">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="honorary" lass="form-label">License ID</label>
+                    <input type="text" class="form-control" id="honorary" placeholder="1234 Main St"
+                      [(ngModel)]="doctor.license" name="domicilio">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="specialist" class="form-label">Specialization</label>
+                    <p-dropdown  class="form-control" [options]="specialistList"
+                      [(ngModel)]="doctor.specialization" name="specialization" defaultLabel="Select a specialist"
+                      optionLabel="name"></p-dropdown >
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+         
+           <div class="w-100 text-center mt-3">
+            <button type="submit" class="btn btn-primary btn-lg" (click)="saveDoctor()">{{title_form}}</button>
+          </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

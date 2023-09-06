@@ -1,0 +1,14 @@
+ .navbar-nav > li > .dropdown-menu { 
+  background-color: #161b22; 
+}
+.dropdown-item { 
+  color: var(--bs-nav-link-color); 
+}
+.dropdown-item:hover { 
+  color: white;
+  background-color: #242424; 
+}
+.dropdown-divider {
+  border-top: 1px solid rgb(253 253 253 / 18%);
+} 
+

@@ -1,0 +1,30 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+    Add product
+</button>
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabels" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabels">{{title_form}}</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #productForm="ngForm">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Product code" [(ngModel)]="product.code" name="code" aria-label="code" required>
+                        <input type="text" class="form-control" [(ngModel)]="product.name" placeholder="Name" name="name" aria-label="name" required>
+                        <span class="input-group-text">$</span>
+                        <input type="text" class="form-control" placeholder="Price" [(ngModel)]="product.price" name="price" aria-label="price" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="!productForm.form.valid" (click)="save()">Add product</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="container" style="width: 3rem; height: 3rem;" role="status" *ngIf="loader">
+  <div class="body-hospital">
+    <div class="loading-container-hospital">
+      <div class="loading-hospital"></div>
+      <div id="loading-text-hospital">Loading</div>
+    </div>
+    <a [routerLink]="['/login']" title="Hospitalmanagement" id="link">Hospital management</a>
+  </div>
+</div>
+<div *ngIf="!loader">
+  <app-nav-menu></app-nav-menu>
+  <router-outlet></router-outlet>
+</div>

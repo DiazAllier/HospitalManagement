@@ -1,0 +1,17 @@
+<!-- <button (click)="showDialog()" class="btn btn-primary" name="note" type="button">Add note</button> -->
+<button class="btn" (click)="showDialog()">
+    <mat-icon>note_add</mat-icon>
+</button>
+<p-dialog header="Header" [(visible)]="visible" [draggable]="false" [modal]="true" [style]="{ width: '50vw', overflow: 'hidden' }" [resizable]="false">
+    <ng-template pTemplate="header">
+        <span class="text-xl font-bold">Add note</span>
+    </ng-template>
+    <form #form="ngForm"></form>
+    <div class="col-md-6 mb-3">
+        <label for="notes" class="mb-1">Add note for patient</label>
+        <textarea class="form-control" rows="1" name="notes" [(ngModel)]="note.medicalNote" class="form-control" id="notes" [ngClass]="(notes && notes.invalid && form.submitted) ? 'is-invalid' : ''" #notes="ngModel" required></textarea>
+    </div>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="addNote()" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

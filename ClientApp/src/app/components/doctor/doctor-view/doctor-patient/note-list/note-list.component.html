@@ -1,0 +1,54 @@
+<!-- <button (click)="showDialog()" class="btn btn-primary" name="note" type="button">Notes</button> -->
+<button class="btn" (click)="showDialog()">
+  <mat-icon>note</mat-icon>
+</button>
+<p-dialog header="Header" [(visible)]="visible" [draggable]="false" [modal]="true" [style]="{ width: '50vw' }" [resizable]="false">
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">Add note</span>
+  </ng-template>
+  <section>
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100 card">
+        <div class="card-header text-center">Notes patient</div>
+        <div class="card-body text-primary">
+          <!-- <div class="my-2 text-left">
+            <button [routerLink]="['/doctor/form']" class="btn btn-primary">New Professional</button>
+          </div> -->
+          <div class="input-group mb-3 w-25" *ngIf="(dataObs$ | async)?.length > 0">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+            </div>
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover" *ngIf="(dataObs$ | async)?.length > 0">
+              <thead>
+                <tr>
+                  <th>Doctor</th>
+                  <th>Note</th>
+                  <th>Created Date</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let note of dataObs$ | async | filter:searchText">
+                  <td>{{ note.doctor.person.name }} {{ note.doctor.person.lastName }}</td>
+                  <td>{{ note.medicalNote }}</td>
+                  <td>{{ note.createdDate | date:'short'}}</td>
+                  <td><button class="btn" (click)="delete(note.id)"><mat-icon>delete</mat-icon></button></td>
+                </tr>
+              </tbody>
+            </table>
+            <mat-paginator [pageSize]="10"></mat-paginator>
+          </div>
+          <div *ngIf="(dataObs$ | async)?.length == 0">
+            <p class="alert alert-info">No notes!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="visible = false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

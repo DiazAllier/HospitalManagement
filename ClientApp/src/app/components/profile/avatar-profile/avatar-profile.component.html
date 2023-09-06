@@ -1,0 +1,30 @@
+<div class="avatar-container hoverable d-flex justify-content-center align-items-center">
+  <img class="img-thumbnail rounded-circle" [src]="url" (error)="handleMissingImage($event)">
+  <label class="label-avatar" for="avatar-input-file">
+    <div class="icon-wrapper">
+      <div id="avatar-input-file"> </div>
+      <i class="bi bi-pencil icon" data-bs-toggle="modal" data-bs-target="#avatarModal"></i>
+    </div>
+  </label>
+</div>
+
+
+<div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type='text' [(ngModel)]="url" name="image" class="form-control">
+        <div *ngIf="error_image " class="alert alert-danger text-center">
+          <div *ngIf="error_image">Url not valid</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="delete()">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="save()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

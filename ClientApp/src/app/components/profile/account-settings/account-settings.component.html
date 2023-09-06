@@ -1,0 +1,27 @@
+<form #form="ngForm">
+    <header class="jumbotron">
+        <h3>
+            <strong>{{ username | uppercase }}</strong> Profile
+        </h3>
+    </header>
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Username</span>
+            <input [disabled]="edit_username" type="text" class="form-control" [(ngModel)]="currentUser.username"
+                name="username" id="username-url" aria-describedby="basic-addon3 basic-addon4">
+            <span class="input-group-text btn" (click)="edit_username = false"><i class="bi bi-pen"></i></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="input-group">
+            <span class="input-group-text" id="basic-addon3">Email</span>
+            <input [disabled]="edit_email" type="text" class="form-control" [(ngModel)]="currentUser.email" name="email"
+                id="email-url" aria-describedby="basic-addon3 basic-addon4">
+            <span class="input-group-text btn" (click)="edit_email = false"><i class="bi bi-pen"></i></span>
+        </div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" (click)="saveUser()">Submit
+        </button>
+    </div>
+</form>

@@ -1,0 +1,69 @@
+<div class="container-fluid py-5 h-100">
+    <div class="row g-0 d-flex justify-content-start h-100">
+        <div class="col-md-6 mt-5">
+            <div class="row g-5 mb-5">
+                <div class="col-12">
+                    <div class="h1 text-info-emphasis">Create Your Account</div>
+                </div>
+                <div class="col-12 ">
+                    <div class="p-3">If you are a patient at hospital, you can create an account to access your medical
+                        information. If you already have an account, sign in.</div>
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <div class="h1 text-info-emphasis">Find Your Patient Record</div>
+                    <div class="p-3">To create an account, we first need to confirm that you have a patient record at
+                        hospital. Please enter the following information to help us find your record.</div>
+                </div>
+            </div>
+            <form #form="ngForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="firstName" placeholder="First name"
+                                [ngClass]="(firstName && firstName.invalid && form.submitted) ? 'is-invalid' : ''"
+                                #firstName="ngModel" [(ngModel)]="person.name" name="firstName" required>
+                            <label for="firstName">First name</label>
+                            <div *ngIf="firstName && firstName.invalid && form.submitted" class="invalid-feedback">
+                                Please enter your name.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                                [ngClass]="(lastName && lastName.invalid && form.submitted) ? 'is-invalid' : ''"
+                                #lastName="ngModel" [(ngModel)]="person.lastName" name="lastName" required>
+                            <label for="lastName">Last Name</label>
+                            <div *ngIf="lastName && lastName.invalid && form.submitted" class="invalid-feedback">
+                                Please enter your last name.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-floating mb-3">
+                            <div class="input-group">
+                                <input [(ngModel)]="person.dob" [max]="minDate" name="dob" id="dob" class="form-control"
+                                    [matDatepicker]="picker" placeholder="MM/DD/YYYY"
+                                    [ngClass]="(dob && dob.invalid && form.submitted) ? 'is-invalid' : ''"
+                                    #dob="ngModel" required>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <button mat-raised-button (click)="picker.open()">Open</button>
+                                <div *ngIf="dob && dob.invalid && form.submitted" class="invalid-feedback">
+                                    Please enter a valid Date of birth.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-secondary" (click)="checkPerson(form)">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer class="my-5">
+    <app-footer></app-footer>
+</footer>

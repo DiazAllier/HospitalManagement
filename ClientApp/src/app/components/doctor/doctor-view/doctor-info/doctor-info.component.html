@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center">
+    <div class="card" style="width: 18rem;">
+        <i class="bi-person-workspace fs-1 text-center"></i>
+        <div class="card-body">
+            <h5 class="card-title text-center">Doctor</h5>
+            <hr class="border border-1 opacity-50">
+            <ul class="list-unstyled mb-1-9">
+                <li class="mb-2 mb-xl-3 text-secondary "><span class="me-2 fw-bold">Full name:</span> {{(doctor?.person?.name )}} {{doctor?.person?.lastName}}</li>
+                <li class="mb-2 mb-xl-3 text-secondary "><span class="me-2 fw-bold">Email:</span> {{doctor?.person?.email}}</li>
+                <li class="mb-2 mb-xl-3 text-secondary "><span class="me-2 fw-bold">Phone:</span> {{doctor?.person?.phoneNumber}}</li>
+                <li class="mb-2 mb-xl-3 text-secondary "><span class="me-2 fw-bold">Date of birth:</span> {{doctor?.person?.dob}}</li>
+                <li class="mb-2 mb-xl-3 text-secondary "><span class="me-2 fw-bold">Address:</span> {{doctor?.person?.address}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

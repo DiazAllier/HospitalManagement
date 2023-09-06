@@ -1,0 +1,58 @@
+<section class="py-5">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100 card border-primary">
+      <div class="card-header text-center">Person</div>
+      <div class="card-body text-primary">
+        <h5 class="card-title">Person list</h5>
+        <div class="my-2 text-left">
+          <button [routerLink]="['/users/form']" class="btn btn-primary">New User</button>
+        </div>
+
+        <div class="input-group mb-3 w-25" *ngIf="(dataObs$ | async)?.length > 0">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="bi bi-search"></i></span>
+          </div>
+          <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped" *ngIf="(dataObs$ | async)?.length > 0">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Type</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let person of dataObs$ | async | filter:searchText">
+                <td>{{ person.id }}</td>
+                <td>{{ person.name }}</td>
+                <td>{{ person.lastName }}</td>
+                <td>{{ person.email }}</td>
+                <td>{{ person.phoneNumber }}</td>
+                <td>{{ person.address }}</td>
+                <td>{{ person.type }}</td>
+                <td><button type="button" name="edit" [routerLink]="['/users/form', person.id]" skipLocationChange="true" class="btn"><mat-icon>edit</mat-icon></button></td>
+                <td><button type="button" name="eliminar" (click)='deletePerson(person)' class="btn"><mat-icon>delete</mat-icon></button></td>
+              </tr>
+            </tbody>
+          </table>
+          <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+        </div>
+        <div *ngIf="(dataObs$ | async)?.length == 0">
+          <p class="alert alert-info">The list is empty.!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="my-5">
+  <app-footer></app-footer>
+</div>

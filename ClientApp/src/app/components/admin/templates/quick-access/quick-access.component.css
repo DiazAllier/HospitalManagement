@@ -1,0 +1,5 @@
+
+.accordion-button:focus, .accordion-button:hover{
+    border-color: #212529 !important;
+    box-shadow: 0 0 0 .15rem #212529 !important;
+  }

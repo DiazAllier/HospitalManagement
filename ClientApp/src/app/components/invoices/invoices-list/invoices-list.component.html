@@ -1,0 +1,59 @@
+<section class="py-5">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100 card">
+            <div class="card-header text-center">Invoices</div>
+            <div class="card-body text-primary">
+                <div class="input-group mb-3 w-25" *ngIf="(dataObs$ | async)?.length > 0">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="bi bi-search"></i></div>
+                    </div>
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Search">
+                </div>
+
+                <div class="table-responsive">
+                    <div class="card-group" *ngIf="(dataObs$ | async)?.length > 0">
+                        <div *ngFor="let data of dataObs$ | async | filter:searchText">
+                            <div class="card m-1" style="width: 18rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Invoice {{data.id}}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">N: {{data.invoiceNumber}}</h6>
+                                </div>
+                                <ul class="list-group mx-1">
+                                    <li class="list-group-item list-group-item-dark active">Items</li>
+                                    <div *ngFor="let p of data.products">
+                                        <li class="list-group-item list-group-item-action disabled">${{p.price}} - name: {{p.name}}</li>
+                                    </div>
+                                    <li class="list-group-item list-group-item-action text-muted list-group-item-secondary">Total: ${{data.totalPrice}}</li>
+                                </ul>
+                                <div class="card-body">
+                                    <p class="card-text">Description: <span class="text-muted">{{data.description}}</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <p class="card-text"><small class="text-body-secondary">Created at: {{data.createAt}}</small></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-paginator [pageSize]="8" [pageSizeOptions]="[8, 16, 24]"></mat-paginator>
+                </div>
+                <div *ngIf="(dataObs$ | async)?.length == 0">
+                    <p class="alert alert-info">No invoices registered!</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="input-group">
+                    <small class="text-body-secondary input-group-text">Subtotal: {{invoices.total}}
+                    </small>
+                    <button class="btn btn-primary input-group-text" (click)="payment()">
+                        Proceed to payment
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="my-5">
+    <app-footer></app-footer>
+</div>

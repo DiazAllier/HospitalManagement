@@ -1,0 +1,6 @@
+.list-group-item.active-side-about {
+    z-index: 2;
+    color: var(--bs-list-group-active-color);
+    background-color: #17a2b8;
+    border-color: #1cb3ca;
+}

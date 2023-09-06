@@ -1,0 +1,30 @@
+<form #emailForm="ngForm">
+  <div class="modal fade" id="modalCodeEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Enter your code</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>We've sent a code to your email.</p>
+          <mat-form-field  id="floatingInput">
+            <mat-icon matPrefix class="boxIcon">check_box</mat-icon>
+            <mat-label></mat-label>
+            <input matInput [(ngModel)]="token.confirmationToken" name="token" type="text" #tokens="ngModel"
+              [ngClass]="{ 'is-invalid': emailForm.submitted && tokens.errors }" required>
+  
+          </mat-form-field>
+  
+          <div *ngIf="emailForm.submitted" class="alert alert-danger">
+            {{error_message}}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" #closeButton data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" type="submit" (click)="checkToken()">Verify</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,53 @@
+<div class="container-fluid form-container">
+    <main class="form-signin text-center">
+        <form #loginForm="ngForm">
+            <div class="boxLogin">
+                <mat-icon matPrefix>account_circle</mat-icon>
+                <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+            </div>
+            <!-- //MAIL -->
+            <div class="form-floating">
+                <mat-form-field class="example-full-width w-100 " id="floatingInput">
+                    <mat-label>Username</mat-label>
+                    <input matInput [(ngModel)]="users.username" name="username" #username="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && username.errors }" required>
+                </mat-form-field>
+                <div *ngIf="username.errors && loginForm.submitted" class="invalid-feedback">
+                    <div *ngIf="username.errors['required']">Username is required</div>
+                </div>
+            </div>
+
+            <!-- //PASSWORD -->
+            <div class="form-floating">
+                <mat-form-field class="example-full-width w-100" id="floatingPassword">
+                    <mat-label>Password</mat-label>
+                    <input autocomplete="on" matInput [(ngModel)]="users.password" name="password" [type]="hide ? 'password' : 'text'" minlength="6" #password="ngModel" [ngClass]="{ 'is-invalid': loginForm.submitted && password.errors }" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <div *ngIf="password.errors && loginForm.submitted" class="invalid-feedback">
+                        <div *ngIf="password.errors['required']">Password is required</div>
+                        <div *ngIf="password.errors['minlength']">
+                            Password must be at least 6 characters
+                        </div>
+                    </div>
+                </mat-form-field>
+
+
+                <div *ngIf="loginForm.submitted && isLoginFailed" class="bg-danger text-light mb-1 px-2 py-1 rounded" role="alert">
+                    {{ errorMessage }}
+                </div>
+            </div>
+
+            <button mat-raised-button color="primary" class="mt-1" (click)="login(loginForm)" type="submit">Sign in</button>
+            <button *ngIf="!verified" mat-raised-button color="primary" class="mt-1 mx-1" type="submit" [attr.data-bs-toggle]="modal" [attr.data-bs-target]="'#modalCodeEmail'">Verify account</button>
+
+            <div class="boxLogin">
+                <p>¿Don't have an account? <a class="w-80" [routerLink]="['/register']">Sign up</a> </p>
+            </div>
+        </form>
+
+    </main>
+    <div>
+        <app-email-check></app-email-check>
+    </div>
+</div>
