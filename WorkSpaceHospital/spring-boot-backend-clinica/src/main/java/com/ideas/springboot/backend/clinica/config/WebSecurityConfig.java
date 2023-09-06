@@ -58,14 +58,9 @@ public class WebSecurityConfig {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.authorizeHttpRequests().requestMatchers("/api/auth/**").permitAll()
 				.requestMatchers("/api/controller/**")
-						.permitAll().anyRequest().authenticated();
-				//.authenticated();
-
-//		http.authenticationProvider(authenticationProvider());
+				.authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
 		return http.build();
-//		http.authorizeHttpRequests().anyRequest().authenticated().and().csrf().disable().formLogin().and().logout();	
 	}
 }
