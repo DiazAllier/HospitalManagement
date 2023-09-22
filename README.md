@@ -7,9 +7,10 @@ TypeScript
 Bootstrap
 Angular
 MySQL
+Spring Boot
 
 # Project
-Hospital management system in Angular and Mysql. This system has a "home" page from which patients, doctors and administrators can login into their accounts by switching the appropriate tabs. This is an application that I created as part of my project. This application can be used by hospitals, clinics and health centers to manage data/records for patients and doctors. Apart from basic functions like add, delete, update and search, other useful functions are also available in this application.
+Hospital management system in Angular, SpringBoot and Mysql. This system has a "home" page from which patients, doctors and administrators can login into their accounts by switching the appropriate tabs. This is an application that I created as part of my project. This application can be used by hospitals, clinics and health centers to manage data/records for patients and doctors. Apart from basic functions like add, delete, update and search, other useful functions are also available in this application.
 
 # Log In
 Basic Log in with first time login.
